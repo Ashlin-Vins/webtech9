@@ -5,8 +5,11 @@
 
 import axios from 'axios';
 
-// Base URL for API (change this if backend runs on different port)
-const API_URL = 'http://localhost:5000/api';
+// Base URL for API.
+// When deployed, set REACT_APP_API_URL in Render to your backend root (e.g. https://my-backend.onrender.com)
+// React environment variables are inlined at build time, so use REACT_APP_API_URL for the backend host (without /api).
+const API_HOST = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = `${API_HOST.replace(/\/$/, '')}/api`;
 
 /**
  * Register a new user
